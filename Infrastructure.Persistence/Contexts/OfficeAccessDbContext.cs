@@ -19,7 +19,7 @@ namespace Infrastructure.Persistence.Contexts
         public virtual DbSet<User> Users { get; set; } = null!;
         public virtual DbSet<DoorAccessLevel> DoorAccessLevels { get; set; } = null!;
         public virtual DbSet<UserAccessLevel> UserAccessLevels { get; set; } = null!;
-        public DbSet<AccessHistory> AccessHistory { get; set; }
+        public virtual DbSet<AccessHistory> AccessHistory { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
