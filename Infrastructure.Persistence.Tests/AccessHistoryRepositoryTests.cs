@@ -27,6 +27,13 @@ namespace Infrastructure.Persistence.Tests
         [Fact]
         public async Task Test_AddAccessHistoryAsync()
         {
+            // arrange
+            var userMocks = UserMock.GetUserMockData();
+            var doorMocks = DoorMock.GetDoorMockData();
+
+            _officeAccessDbContexMock.Setup(x => x.Users).Returns(userMocks.Object);
+            _officeAccessDbContexMock.Setup(x => x.Doors).Returns(doorMocks.Object);
+
             //Act
             await _sut.AddAccessHistoryAsync(1, 1, true);
 
