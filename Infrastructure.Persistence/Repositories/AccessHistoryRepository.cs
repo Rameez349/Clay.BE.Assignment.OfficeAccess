@@ -16,6 +16,10 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<bool> AddAccessHistoryAsync(int userId, int doorId, bool accessGranted)
         {
+            if (!await _officeAccessDbContext.Users.AnyAsync(x => x.Id == userId) ||
+                !await _officeAccessDbContext.Doors.AnyAsync(x => x.Id == doorId))
+                return false;
+
             _officeAccessDbContext.Add(new AccessHistory
             {
                 UserId = userId,
