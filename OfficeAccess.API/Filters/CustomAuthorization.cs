@@ -2,7 +2,7 @@
 using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace Clay.BE.Assignment.RoomAccess.API.Filters
+namespace OfficeAccess.API.Filters
 {
     public class CustomAuthorization : IAsyncAuthorizationFilter
     {

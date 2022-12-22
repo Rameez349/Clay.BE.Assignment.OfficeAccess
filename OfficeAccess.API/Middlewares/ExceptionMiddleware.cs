@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 using Application.Dtos.Responses;
 using Application.Exceptions;
 
-namespace Clay.BE.Assignment.RoomAccess.API.Middlewares
+namespace OfficeAccess.API.Middlewares
 {
     public class ExceptionMiddleware
     {

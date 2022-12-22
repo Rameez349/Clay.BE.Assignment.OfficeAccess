@@ -1,8 +1,8 @@
 using Application.Extensions;
-using Clay.BE.Assignment.RoomAccess.API.Middlewares;
 using Infrastructure.Persistence.ServiceExtensions;
+using OfficeAccess.API.Middlewares;
 
-namespace Clay.BE.Assignment.RoomAccess.API
+namespace OfficeAccess.API
 {
     public partial class Program
     {
