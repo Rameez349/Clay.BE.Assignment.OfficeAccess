@@ -4,7 +4,7 @@ using Infrastructure.Persistence.ServiceExtensions;
 
 namespace Clay.BE.Assignment.RoomAccess.API
 {
-    public class Program
+    public partial class Program
     {
         public static void Main(string[] args)
         {
