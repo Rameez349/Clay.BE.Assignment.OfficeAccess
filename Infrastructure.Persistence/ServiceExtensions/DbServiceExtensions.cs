@@ -15,6 +15,7 @@ namespace Infrastructure.Persistence.ServiceExtensions
             ConfigureOptions(services, config);
             ConfigureDbContext(services);
             ConfigureRepositories(services);
+            ConfigureMigrations(services);
         }
 
         private static void ConfigureOptions(IServiceCollection services, IConfiguration config)
@@ -31,6 +32,19 @@ namespace Infrastructure.Persistence.ServiceExtensions
         private static void ConfigureDbContext(IServiceCollection services)
         {
             services.AddDbContext<OfficeAccessDbContext>(options => options.UseSqlServer());
+        }
+
+        private static void ConfigureMigrations(IServiceCollection services)
+        {
+            var scopeFactory = services.BuildServiceProvider().GetRequiredService<IServiceScopeFactory>();
+            var scope = scopeFactory.CreateScope();
+            var provider = scope.ServiceProvider;
+
+            using (var migrationDbContext = provider.GetRequiredService<OfficeAccessDbContext>())
+            {
+                migrationDbContext.Database.SetCommandTimeout(300);
+                migrationDbContext.Database.Migrate();
+            }
         }
     }
 }
