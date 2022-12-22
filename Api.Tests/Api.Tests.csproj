@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Clay.BE.Assignment.RoomAccess.API\Clay.BE.Assignment.RoomAccess.API.csproj" />
+    <ProjectReference Include="..\Clay.BE.Assignment.RoomAccess.API\OfficeAccess.API.csproj" />
   </ItemGroup>
 
 </Project>
