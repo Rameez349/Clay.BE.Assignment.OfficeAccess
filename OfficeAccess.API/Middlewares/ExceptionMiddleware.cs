@@ -1,5 +1,4 @@
 ﻿using System.Text.Json;
-using System.Text.Json.Serialization;
 using Application.Dtos.Responses;
 using Application.Exceptions;
 
