@@ -1,21 +1,19 @@
 ﻿using Application.Dtos.Requests;
 using Application.Dtos.Responses;
 using Application.Interfaces;
-using Clay.BE.Assignment.RoomAccess.API.Filters;
+using OfficeAccess.API.Filters;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Clay.BE.Assignment.RoomAccess.API.Controllers
+namespace OfficeAccess.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class AccessHistoryController : ControllerBase
     {
-        private readonly IUserAccessService _userAccessService;
         private readonly IAccessHistoryService _accessHistoryService;
 
-        public AccessHistoryController(IUserAccessService userAccessService, IAccessHistoryService accessHistoryService)
+        public AccessHistoryController(IAccessHistoryService accessHistoryService)
         {
-            _userAccessService = userAccessService;
             _accessHistoryService = accessHistoryService;
         }
 

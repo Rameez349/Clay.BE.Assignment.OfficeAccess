@@ -2,11 +2,9 @@
 using Application.Dtos.Requests;
 using Application.Dtos.Responses;
 using Application.Interfaces;
-using Clay.BE.Assignment.RoomAccess.API.Filters;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Clay.BE.Assignment.RoomAccess.API.Controllers
+namespace OfficeAccess.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
