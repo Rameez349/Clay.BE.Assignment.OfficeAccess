@@ -21,7 +21,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C5EBCE5C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.Persistence.Tests", "Infrastructure.Persistence.Tests\Infrastructure.Persistence.Tests.csproj", "{6F83A8F8-16E8-47A0-801D-F0EA39C6ADA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Tests", "Application.Tests\Application.Tests.csproj", "{347201AB-B7BB-4368-9E36-AE7EAC039260}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.Tests", "Application.Tests\Application.Tests.csproj", "{347201AB-B7BB-4368-9E36-AE7EAC039260}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Tests", "Api.Tests\Api.Tests.csproj", "{897B381B-D05F-42F1-A4F0-79C48E034DD2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{347201AB-B7BB-4368-9E36-AE7EAC039260}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{347201AB-B7BB-4368-9E36-AE7EAC039260}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{347201AB-B7BB-4368-9E36-AE7EAC039260}.Release|Any CPU.Build.0 = Release|Any CPU
+		{897B381B-D05F-42F1-A4F0-79C48E034DD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{897B381B-D05F-42F1-A4F0-79C48E034DD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{897B381B-D05F-42F1-A4F0-79C48E034DD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{897B381B-D05F-42F1-A4F0-79C48E034DD2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,6 +69,7 @@ Global
 		{F39921D4-3B90-4555-A300-1441F4C7CEC3} = {082B658F-D59B-4616-B692-920F39A0D06A}
 		{6F83A8F8-16E8-47A0-801D-F0EA39C6ADA0} = {C5EBCE5C-C0BC-456C-A040-F49A3DB942A0}
 		{347201AB-B7BB-4368-9E36-AE7EAC039260} = {C5EBCE5C-C0BC-456C-A040-F49A3DB942A0}
+		{897B381B-D05F-42F1-A4F0-79C48E034DD2} = {C5EBCE5C-C0BC-456C-A040-F49A3DB942A0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9E78F5E0-6CAD-4203-B0AC-5984E1EAB143}
