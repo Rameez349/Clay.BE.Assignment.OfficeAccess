@@ -40,9 +40,9 @@ namespace Infrastructure.Persistence.Tests
         {
             // arrange
             var timestamp = DateTime.UtcNow;
-            var userAccessLevelMocks = AccessHistoryMock.GetAccessHistoryMockData(timestamp);
+            var userAccessHistoryMocks = AccessHistoryMock.GetAccessHistoryMockData(timestamp);
 
-            _officeAccessDbContexMock.Setup(x => x.AccessHistory).Returns(userAccessLevelMocks.Object);
+            _officeAccessDbContexMock.Setup(x => x.AccessHistory).Returns(userAccessHistoryMocks.Object);
 
             int doorId = 2;
 
@@ -65,9 +65,9 @@ namespace Infrastructure.Persistence.Tests
         {
             // arrange
             var timestamp = DateTime.UtcNow;
-            var userAccessLevelMocks = AccessHistoryMock.GetAccessHistoryMockData(timestamp);
+            var userAccessHistoryMocks = AccessHistoryMock.GetAccessHistoryMockData(timestamp);
 
-            _officeAccessDbContexMock.Setup(x => x.AccessHistory).Returns(userAccessLevelMocks.Object);
+            _officeAccessDbContexMock.Setup(x => x.AccessHistory).Returns(userAccessHistoryMocks.Object);
 
             int doorId = 3;
 
