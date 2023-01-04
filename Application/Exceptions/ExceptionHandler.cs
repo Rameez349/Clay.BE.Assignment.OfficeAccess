@@ -1,5 +1,5 @@
 ﻿using System.Net;
-using Application.Constants;
+using Domain.Constants;
 using Microsoft.Extensions.Logging;
 
 namespace Application.Exceptions

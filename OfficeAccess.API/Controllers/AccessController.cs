@@ -1,7 +1,7 @@
-﻿using Application.Constants;
-using Application.Dtos.Requests;
+﻿using Application.Dtos.Requests;
 using Application.Dtos.Responses;
 using Application.Interfaces;
+using Domain.Constants;
 using Microsoft.AspNetCore.Mvc;
 
 namespace OfficeAccess.API.Controllers
