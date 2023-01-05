@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using Application.Exceptions.Types;
 using Domain.Constants;
 using Microsoft.Extensions.Logging;
 
@@ -12,6 +13,10 @@ namespace Application.Exceptions
 
             switch (ex)
             {
+                case NotFoundException:
+                    response.StatusCode = HttpStatusCode.NotFound;
+                    response.Content = ApiResponseMessages.Notfound;
+                    break;
                 case UnauthorizedAccessException:
                     response.StatusCode = HttpStatusCode.Unauthorized;
                     response.Content = ApiResponseMessages.Unauthorized;
