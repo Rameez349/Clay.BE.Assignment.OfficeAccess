@@ -13,7 +13,7 @@ namespace Infrastructure.Persistence.Migrations
                 name: "AccessLevel",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
@@ -26,7 +26,7 @@ namespace Infrastructure.Persistence.Migrations
                 name: "Office",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
@@ -39,7 +39,7 @@ namespace Infrastructure.Persistence.Migrations
                 name: "User",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AllowHistoryView = table.Column<bool>(type: "bit", nullable: false)
@@ -53,10 +53,10 @@ namespace Infrastructure.Persistence.Migrations
                 name: "Door",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    OfficeId = table.Column<int>(type: "int", nullable: false)
+                    OfficeId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -73,8 +73,8 @@ namespace Infrastructure.Persistence.Migrations
                 name: "UserAccessLevel",
                 columns: table => new
                 {
-                    AccessLevelId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false)
+                    AccessLevelId = table.Column<long>(type: "bigint", nullable: false),
+                    UserId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -97,10 +97,10 @@ namespace Infrastructure.Persistence.Migrations
                 name: "AccessHistory",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    DoorId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<long>(type: "bigint", nullable: false),
+                    DoorId = table.Column<long>(type: "bigint", nullable: false),
                     AccessGranted = table.Column<bool>(type: "bit", nullable: false),
                     Timestamp = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -125,8 +125,8 @@ namespace Infrastructure.Persistence.Migrations
                 name: "DoorAccessLevel",
                 columns: table => new
                 {
-                    DoorId = table.Column<int>(type: "int", nullable: false),
-                    AccessLevelId = table.Column<int>(type: "int", nullable: false)
+                    DoorId = table.Column<long>(type: "bigint", nullable: false),
+                    AccessLevelId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {

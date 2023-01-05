@@ -2,9 +2,9 @@
 {
     public class Door
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string Name { get; set; } = null!;
-        public int OfficeId { get; set; }
+        public long OfficeId { get; set; }
         public Office Office { get; set; } = null!;
         public ICollection<DoorAccessLevel> DoorAccessLevels { get; set; } = null!;
     }

@@ -1,5 +1,5 @@
-﻿using Application.Constants;
-using Application.Interfaces;
+﻿using Application.Interfaces;
+using Domain.Constants;
 using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace OfficeAccess.API.Filters

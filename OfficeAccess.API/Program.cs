@@ -1,6 +1,11 @@
-using Application.Extensions;
-using Infrastructure.Persistence.ServiceExtensions;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using OfficeAccess.API.Extensions;
 using OfficeAccess.API.Middlewares;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace OfficeAccess.API
 {
@@ -12,12 +17,17 @@ namespace OfficeAccess.API
 
             builder.Services.AddControllers();
 
-            builder.Services.AddServices();
-            builder.Services.AddDbServices(builder.Configuration);
+            builder.Services.ConfigureServices(builder.Configuration);
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+
+            builder.Services.AddAuthorization(options =>
+            {
+                options.FallbackPolicy = new AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .Build();
+            });
 
             var app = builder.Build();
 
@@ -32,8 +42,9 @@ namespace OfficeAccess.API
 
             app.UseHttpsRedirection();
 
-            app.UseAuthorization();
+            app.UseAuthentication();
 
+            app.UseAuthorization();
 
             app.MapControllers();
 
