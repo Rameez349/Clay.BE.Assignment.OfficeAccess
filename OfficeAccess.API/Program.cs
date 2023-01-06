@@ -12,7 +12,13 @@ namespace OfficeAccess.API
 
             builder.Services.AddControllers();
 
-            builder.Services.ConfigureServices(builder.Configuration);
+            builder.Services.ConfigureJwtService(builder.Configuration);
+
+            builder.Services.ConfigureSwagger();
+
+            builder.Services.ConfigureApplicationServices();
+
+            builder.Services.ConfigureDbServices(builder.Configuration);
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
