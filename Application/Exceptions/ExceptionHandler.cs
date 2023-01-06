@@ -18,10 +18,9 @@ namespace Application.Exceptions
                     response.Content = ApiResponseMessages.Notfound;
                     break;
                 case UnauthorizedAccessException:
-                    response.StatusCode = HttpStatusCode.Unauthorized;
+                    response.StatusCode = HttpStatusCode.Forbidden;
                     response.Content = ApiResponseMessages.Unauthorized;
                     break;
-
                 default:
                     logger.LogError(
                         "{exceptionType} occured with message {message}, {StackTrace}\n{Data}",

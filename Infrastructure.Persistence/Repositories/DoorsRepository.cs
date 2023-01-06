@@ -66,19 +66,4 @@ public class DoorsRepository : IDoorsRepository
     {
         return await _officeAccessDbContext.AccessHistory.Where(x => x.DoorId == doorId).Include(x => x.Door).Include(x => x.User).ToListAsync();
     }
-
-    public async Task<bool> AuthorizeViewDoorAccessHistoryAsync(long userId, long doorId)
-    {
-        return await _officeAccessDbContext.UserAccessLevels.Join(
-               _officeAccessDbContext.DoorAccessLevels,
-               userAccess => userAccess.AccessLevelId,
-               doorAccess => doorAccess.AccessLevelId,
-               (userAccess, doorAccess) => new { userAccess, doorAccess }).Select(x => new
-               {
-                   x.userAccess.UserId,
-                   x.doorAccess.DoorId,
-                   x.userAccess.User.AllowHistoryView
-               })
-               .Where(x => x.UserId == userId && x.DoorId == doorId && x.AllowHistoryView).AnyAsync();
-    }
 }

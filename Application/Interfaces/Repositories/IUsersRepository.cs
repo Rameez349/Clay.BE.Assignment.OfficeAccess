@@ -7,8 +7,8 @@ using Domain.Entities;
 
 namespace Application.Interfaces.Repositories
 {
-    public interface IUserRepository : IRepository<User>
+    public interface IUsersRepository : IRepository<User>
     {
-        Task<bool> DoesExist(long id);
+        Task<User> DoesExist(long id);
     }
 }

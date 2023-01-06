@@ -12,10 +12,10 @@ namespace Application.Services
 {
     public class UsersService : IUsersService
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IUsersRepository _userRepository;
         private readonly ITokenService _tokenService;
 
-        public UsersService(IUserRepository userRepository, ITokenService tokenService)
+        public UsersService(IUsersRepository userRepository, ITokenService tokenService)
         {
             _userRepository = userRepository;
             _tokenService = tokenService;
@@ -23,10 +23,11 @@ namespace Application.Services
 
         public async Task<string> AuthenticateUser(long userId)
         {
-            if (!await _userRepository.DoesExist(userId))
+            var user = await _userRepository.DoesExist(userId);
+            if (user is null)
                 throw new NotFoundException($"{ApiResponseMessages.Notfound}: User ID: {userId}");
 
-            return _tokenService.GenerateJwtToken(userId, string.Empty);
+            return _tokenService.GenerateJwtToken(userId, user.Name, user.AllowHistoryView);
         }
     }
 }

@@ -16,16 +16,13 @@ namespace OfficeAccess.API.Extensions;
 
 public static class ServiceCollectionExtension
 {
-    public static void ConfigureServices(this IServiceCollection services, IConfiguration config)
+    public static void ConfigureJwtService(this IServiceCollection services, IConfiguration config)
     {
         ConfigureJwtOptions(services, config);
         ConfigureJwtAuthentication(services);
-        ConfigureSwagger(services);
-        ConfigureApplicationServices(services);
-        ConfigureDbServices(services, config);
     }
 
-    public static void ConfigureApplicationServices(IServiceCollection services)
+    public static void ConfigureApplicationServices(this IServiceCollection services)
     {
         services.AddScoped<ITokenService, TokenService>();
         services.AddScoped<IUsersService, UsersService>();
@@ -40,6 +37,39 @@ public static class ServiceCollectionExtension
         ConfigureMigrations(services);
     }
 
+    public static void ConfigureSwagger(this IServiceCollection services)
+    {
+        services.AddSwaggerGen(options =>
+        {
+            options.AddSecurityDefinition("Authorization", new OpenApiSecurityScheme
+            {
+                Name = "Authorization",
+                Description = $"Specify Authorization token.",
+                BearerFormat = "JWT",
+                In = ParameterLocation.Header,
+                Type = SecuritySchemeType.Http,
+                Scheme = "Bearer",
+            });
+            options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Name = "Authorization",
+                            Type =  SecuritySchemeType.Http,
+                            In = ParameterLocation.Header,
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Authorization",
+                            },
+                        },
+                        Array.Empty<string>()
+                    },
+                });
+        });
+    }
+
     private static void ConfigureDbOptions(IServiceCollection services, IConfiguration config)
     {
         services.Configure<DbOptions>(opt => config.GetSection(DbOptions.Key).Bind(opt));
@@ -52,7 +82,7 @@ public static class ServiceCollectionExtension
 
     private static void ConfigureRepositories(IServiceCollection services)
     {
-        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IUsersRepository, UsersRepository>();
         services.AddScoped<IDoorsRepository, DoorsRepository>();
     }
 
@@ -98,36 +128,5 @@ public static class ServiceCollectionExtension
         });
     }
 
-    private static void ConfigureSwagger(IServiceCollection services)
-    {
-        services.AddSwaggerGen(options =>
-        {
-            options.AddSecurityDefinition("Authorization", new OpenApiSecurityScheme
-            {
-                Name = "Authorization",
-                Description = $"Specify Authorization token.",
-                BearerFormat = "JWT",
-                In = ParameterLocation.Header,
-                Type = SecuritySchemeType.Http,
-                Scheme = "Bearer",
-            });
-            options.AddSecurityRequirement(new OpenApiSecurityRequirement
-                {
-                    {
-                        new OpenApiSecurityScheme
-                        {
-                            Name = "Authorization",
-                            Type =  SecuritySchemeType.Http,
-                            In = ParameterLocation.Header,
-                            Reference = new OpenApiReference
-                            {
-                                Type = ReferenceType.SecurityScheme,
-                                Id = "Authorization",
-                            },
-                        },
-                        Array.Empty<string>()
-                    },
-                });
-        });
-    }
+    
 }
