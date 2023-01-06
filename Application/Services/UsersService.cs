@@ -12,10 +12,10 @@ namespace Application.Services
 {
     public class UsersService : IUsersService
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IUsersRepository _userRepository;
         private readonly ITokenService _tokenService;
 
-        public UsersService(IUserRepository userRepository, ITokenService tokenService)
+        public UsersService(IUsersRepository userRepository, ITokenService tokenService)
         {
             _userRepository = userRepository;
             _tokenService = tokenService;

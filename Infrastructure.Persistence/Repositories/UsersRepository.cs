@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.Repositories
 {
-    public class UserRepository : IUserRepository
+    public class UsersRepository : IUsersRepository
     {
         private readonly OfficeAccessDbContext _officeAccessDbContext;
 
-        public UserRepository(OfficeAccessDbContext officeAccessDbContext)
+        public UsersRepository(OfficeAccessDbContext officeAccessDbContext)
         {
             _officeAccessDbContext = officeAccessDbContext;
         }

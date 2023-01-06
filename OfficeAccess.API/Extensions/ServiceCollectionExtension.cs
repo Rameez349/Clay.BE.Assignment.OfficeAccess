@@ -52,7 +52,7 @@ public static class ServiceCollectionExtension
 
     private static void ConfigureRepositories(IServiceCollection services)
     {
-        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IUsersRepository, UsersRepository>();
         services.AddScoped<IDoorsRepository, DoorsRepository>();
     }
 
