@@ -2,8 +2,8 @@
 {
     public class AccessResponse
     {
-        public int UserId { get; init; }
-        public int DoorId { get; init; }
+        public long UserId { get; init; }
+        public long DoorId { get; init; }
         public bool AccessGranted { get; init; }
     }
 }

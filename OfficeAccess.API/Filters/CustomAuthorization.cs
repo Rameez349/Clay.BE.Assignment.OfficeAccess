@@ -6,11 +6,11 @@ namespace OfficeAccess.API.Filters
 {
     public class CustomAuthorization : IAsyncAuthorizationFilter
     {
-        private readonly IUserAccessService _userAccessService;
+        private readonly IDoorsService _doorsService;
 
-        public CustomAuthorization(IUserAccessService userAccessService)
+        public CustomAuthorization(IDoorsService doorsService)
         {
-            _userAccessService = userAccessService;
+            _doorsService = doorsService;
         }
 
         public async Task OnAuthorizationAsync(AuthorizationFilterContext context)
@@ -18,7 +18,7 @@ namespace OfficeAccess.API.Filters
             int userId = int.Parse(context.HttpContext.Request.Query["UserId"]);
             int doorId = int.Parse(context.HttpContext.Request.Query["DoorId"]);
 
-            var accessResponse = await _userAccessService.AuthorizeViewAccessHistoryAsync(userId, doorId);
+            var accessResponse = await _doorsService.AuthorizeViewDoorAccessHistoryAsync(userId, doorId);
 
             if (!accessResponse.AccessGranted)
                 throw new UnauthorizedAccessException($"{ApiResponseMessages.Unauthorized} UserId:{userId}, DoorId:{doorId}");
