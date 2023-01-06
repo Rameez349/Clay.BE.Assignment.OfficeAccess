@@ -29,7 +29,7 @@ namespace Application.Services
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, username)
+                    new Claim("UserId", userId.ToString())
                 }),
                 Issuer = _jwtOptions.Issuer,
                 Audience = _jwtOptions.Audience,

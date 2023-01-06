@@ -10,9 +10,9 @@ namespace OfficeAccess.API.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private readonly IUserService _userService;
+        private readonly IUsersService _userService;
 
-        public AccountController(IUserService userService)
+        public AccountController(IUsersService userService)
         {
             _userService = userService;
         }

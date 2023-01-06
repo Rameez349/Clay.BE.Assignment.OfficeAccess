@@ -28,9 +28,8 @@ public static class ServiceCollectionExtension
     public static void ConfigureApplicationServices(IServiceCollection services)
     {
         services.AddScoped<ITokenService, TokenService>();
-        services.AddScoped<IUserService, UserService>();
-        services.AddScoped<IUserAccessService, UserAccessService>();
-        services.AddScoped<IAccessHistoryService, AccessHistoryService>();
+        services.AddScoped<IUsersService, UsersService>();
+        services.AddScoped<IDoorsService, DoorsService>();
     }
 
     public static void ConfigureDbServices(this IServiceCollection services, IConfiguration config)
@@ -54,8 +53,7 @@ public static class ServiceCollectionExtension
     private static void ConfigureRepositories(IServiceCollection services)
     {
         services.AddScoped<IUserRepository, UserRepository>();
-        services.AddScoped<IUserAccessRepository, UserAccessRepository>();
-        services.AddScoped<IAccessHistoryRepository, AccessHistoryRepository>();
+        services.AddScoped<IDoorsRepository, DoorsRepository>();
     }
 
     private static void ConfigureDbContext(IServiceCollection services)

@@ -10,12 +10,12 @@ using Domain.Constants;
 
 namespace Application.Services
 {
-    public class UserService : IUserService
+    public class UsersService : IUsersService
     {
         private readonly IUserRepository _userRepository;
         private readonly ITokenService _tokenService;
 
-        public UserService(IUserRepository userRepository, ITokenService tokenService)
+        public UsersService(IUserRepository userRepository, ITokenService tokenService)
         {
             _userRepository = userRepository;
             _tokenService = tokenService;

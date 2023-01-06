@@ -1,11 +1,6 @@
-using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
 using OfficeAccess.API.Extensions;
 using OfficeAccess.API.Middlewares;
-using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace OfficeAccess.API
 {
@@ -25,9 +20,11 @@ namespace OfficeAccess.API
             builder.Services.AddAuthorization(options =>
             {
                 options.FallbackPolicy = new AuthorizationPolicyBuilder()
-                    .RequireAuthenticatedUser()
+                    .RequireAuthenticatedUser()                   
                     .Build();
             });
+
+            builder.Services.AddHttpContextAccessor();
 
             var app = builder.Build();
 

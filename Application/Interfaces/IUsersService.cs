@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Application.Interfaces
 {
-    public interface IUserService
+    public interface IUsersService
     {
         Task<string> AuthenticateUser(long userId);
     }
