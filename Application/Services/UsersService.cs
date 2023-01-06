@@ -23,10 +23,11 @@ namespace Application.Services
 
         public async Task<string> AuthenticateUser(long userId)
         {
-            if (!await _userRepository.DoesExist(userId))
+            var user = await _userRepository.DoesExist(userId);
+            if (user is null)
                 throw new NotFoundException($"{ApiResponseMessages.Notfound}: User ID: {userId}");
 
-            return _tokenService.GenerateJwtToken(userId, string.Empty);
+            return _tokenService.GenerateJwtToken(userId, user.Name, user.AllowHistoryView);
         }
     }
 }

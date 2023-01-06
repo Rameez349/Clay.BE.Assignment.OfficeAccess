@@ -25,16 +25,6 @@ public class DoorsService : IDoorsService
         };
     }
 
-    public async Task<AccessResponse> AuthorizeViewDoorAccessHistoryAsync(long userId, long doorId)
-    {
-        return new AccessResponse
-        {
-            UserId = userId,
-            DoorId = doorId,
-            AccessGranted = await _doorsRepository.AuthorizeViewDoorAccessHistoryAsync(userId, doorId)
-        };
-    }
-
     public Task<bool> AddDoorAccessHistoryAsync(long userId, long doorId, bool accessGranted)
     {
         return _doorsRepository.AddDoorAccessHistoryAsync(userId, doorId, accessGranted);

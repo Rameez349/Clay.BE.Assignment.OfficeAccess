@@ -2,6 +2,7 @@
 using Application.Dtos.Responses;
 using Application.Interfaces;
 using Domain.Constants;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OfficeAccess.API.Filters;
 using OfficeAccess.API.Helpers;
@@ -19,27 +20,33 @@ public class DoorController : ControllerBase
         _doorsService = doorsService;
     }
 
-    [HttpPost("Unlock/{DoorId}")]
+    [HttpPost("Unlock/{doorId}")]
     [ProducesResponseType(typeof(AccessResponse), StatusCodes.Status200OK)]
-    public async Task<ActionResult> UnlockDoor(int DoorId)
+    [TypeFilter(typeof(CustomAuthorization))]
+    public async Task<ActionResult> UnlockDoor(long doorId)
     {
-        int userId = HttpContextHelper.GetUserIdFromClaims();
+        long userId = HttpContextHelper.GetUserIdFromClaims();
+        var accessResponse = HttpContextHelper.GetAccessResponseFromAuthorizationContext();
 
-        var accessResponse = await _doorsService.AuthorizeDoorAccessAsync(userId, DoorId);
-
-        await _doorsService.AddDoorAccessHistoryAsync(userId, DoorId, accessResponse.AccessGranted);
+        await _doorsService.AddDoorAccessHistoryAsync(userId, doorId, accessResponse.AccessGranted);
 
         if (!accessResponse.AccessGranted)
-            throw new UnauthorizedAccessException($"{ApiResponseMessages.Unauthorized} UserId:{userId}, DoorId:{DoorId}");
+            throw new UnauthorizedAccessException($"{ApiResponseMessages.Unauthorized} UserId:{userId}, DoorId:{doorId}");
 
         return Ok(accessResponse);
     }
 
-    [HttpGet("Door")]
+    [HttpGet("AccessHistory/{doorId}")]
     [ProducesResponseType(typeof(IEnumerable<AccessHistoryResponse>), StatusCodes.Status200OK)]
+    [Authorize(Policy = "HistoryAccess")]
     [TypeFilter(typeof(CustomAuthorization))]
-    public async Task<ActionResult> AccessHistory([FromQuery] AccessRequest accessRequest)
+    public async Task<ActionResult> AccessHistory(long doorId)
     {
-        return Ok(await _doorsService.GetDoorAccessHistoryAsync(accessRequest.DoorId));
+        var accessResponse = HttpContextHelper.GetAccessResponseFromAuthorizationContext();
+
+        if (accessResponse is null || !accessResponse.AccessGranted)
+            throw new UnauthorizedAccessException($"{ApiResponseMessages.Unauthorized} DoorId:{doorId}");
+
+        return Ok(await _doorsService.GetDoorAccessHistoryAsync(doorId));
     }
 }

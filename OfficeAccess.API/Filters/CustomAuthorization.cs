@@ -1,6 +1,8 @@
-﻿using Application.Interfaces;
+﻿using Application.Dtos.Responses;
+using Application.Interfaces;
 using Domain.Constants;
 using Microsoft.AspNetCore.Mvc.Filters;
+using OfficeAccess.API.Helpers;
 
 namespace OfficeAccess.API.Filters
 {
@@ -15,13 +17,10 @@ namespace OfficeAccess.API.Filters
 
         public async Task OnAuthorizationAsync(AuthorizationFilterContext context)
         {
-            int userId = int.Parse(context.HttpContext.Request.Query["UserId"]);
-            int doorId = int.Parse(context.HttpContext.Request.Query["DoorId"]);
+            long userId = HttpContextHelper.GetUserIdFromClaims();
+            long doorId = Convert.ToInt64(context.HttpContext.Request.RouteValues["doorId"]);
 
-            var accessResponse = await _doorsService.AuthorizeViewDoorAccessHistoryAsync(userId, doorId);
-
-            if (!accessResponse.AccessGranted)
-                throw new UnauthorizedAccessException($"{ApiResponseMessages.Unauthorized} UserId:{userId}, DoorId:{doorId}");
+            context.HttpContext.Items["AccessResponse"] = await _doorsService.AuthorizeDoorAccessAsync(userId, doorId);
         }
     }
 }

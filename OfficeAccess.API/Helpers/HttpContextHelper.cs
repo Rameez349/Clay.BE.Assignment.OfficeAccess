@@ -1,4 +1,5 @@
-﻿using Domain.Constants;
+﻿using Application.Dtos.Responses;
+using Domain.Constants;
 
 namespace OfficeAccess.API.Helpers
 {
@@ -14,6 +15,16 @@ namespace OfficeAccess.API.Helpers
                 throw new UnauthorizedAccessException($"{ApiResponseMessages.Unauthorized}");
 
             return Convert.ToInt32(userClaim.Value);
+        }
+
+        public static AccessResponse GetAccessResponseFromAuthorizationContext()
+        {
+            var accessResponse = (AccessResponse?)HttpContext.Items["AccessResponse"];
+
+            if (accessResponse is null)
+                throw new NullReferenceException(nameof(accessResponse));
+
+            return accessResponse;
         }
     }
 }

@@ -19,8 +19,10 @@ namespace OfficeAccess.API
 
             builder.Services.AddAuthorization(options =>
             {
+                options.AddPolicy("HistoryAccess", x => x.RequireClaim("CanViewHistory", "True"));
+
                 options.FallbackPolicy = new AuthorizationPolicyBuilder()
-                    .RequireAuthenticatedUser()                   
+                    .RequireAuthenticatedUser()
                     .Build();
             });
 

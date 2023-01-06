@@ -29,9 +29,9 @@ namespace Infrastructure.Persistence.Repositories
         {
             throw new NotImplementedException();
         }
-        public async Task<bool> DoesExist(long id)
+        public async Task<User> DoesExist(long id)
         {
-            return await _officeAccessDbContext.Users.AnyAsync(x => x.Id == id);
+            return await _officeAccessDbContext.Users.FirstOrDefaultAsync(x => x.Id == id);
         }
     }
 }

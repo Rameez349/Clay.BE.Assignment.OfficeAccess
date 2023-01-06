@@ -50,36 +50,6 @@ namespace Application.Tests.ServicesTests
         }
 
         [Fact]
-        public async Task Test_AuthorizeViewDoorAccessHistoryAsync_When_UserId_DoorId_Is_Valid()
-        {
-            // arrange
-            _doorsRepository.Setup(x => x.AuthorizeViewDoorAccessHistoryAsync(It.IsAny<long>(), It.IsAny<long>())).ReturnsAsync(true);
-
-            // act
-            var result = await _sut.AuthorizeViewDoorAccessHistoryAsync(1, 1);
-
-            // assert
-            result.AccessGranted.Should().BeTrue();
-            result.DoorId.Should().Be(1);
-            result.UserId.Should().Be(1);
-        }
-
-        [Fact]
-        public async Task Test_AuthorizeViewDoorAccessHistoryAsync_When_UserId_DoorId_Is_Invalid()
-        {
-            // arrange
-            _doorsRepository.Setup(x => x.AuthorizeViewDoorAccessHistoryAsync(It.IsAny<long>(), It.IsAny<long>())).ReturnsAsync(false);
-
-            // act
-            var result = await _sut.AuthorizeViewDoorAccessHistoryAsync(3, 4);
-
-            // assert
-            result.AccessGranted.Should().BeFalse();
-            result.DoorId.Should().Be(4);
-            result.UserId.Should().Be(3);
-        }
-
-        [Fact]
         public async Task Test_AddDoorAccessHistoryAsync()
         {
             // arrange

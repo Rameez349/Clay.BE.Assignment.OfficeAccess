@@ -9,6 +9,6 @@ namespace Application.Interfaces.Repositories
 {
     public interface IUserRepository : IRepository<User>
     {
-        Task<bool> DoesExist(long id);
+        Task<User> DoesExist(long id);
     }
 }

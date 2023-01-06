@@ -121,43 +121,5 @@ namespace Infrastructure.Persistence.Tests
             // assert
             result.Should().BeFalse();
         }
-
-        [Fact]
-        public async Task Test_AuthorizeViewDoorAccessHistoryAsync_Returns_True_When_UserId_DoorId_Are_Valid()
-        {
-            // arrange
-            var userAccessLevelMocks = UserAccessLevelMock.GetUserAccessLevelMockData();
-            var doorAccessLevelMocks = DoorAccessLevelMock.GetDoorAccessLevelMockData();
-            _officeAccessDbContexMock.Setup(x => x.UserAccessLevels).Returns(userAccessLevelMocks.Object);
-            _officeAccessDbContexMock.Setup(x => x.DoorAccessLevels).Returns(doorAccessLevelMocks.Object);
-
-            int userId = 1;
-            int doorId = 1;
-
-            // act
-            var result = await _sut.AuthorizeViewDoorAccessHistoryAsync(userId, doorId);
-
-            // assert
-            result.Should().BeTrue();
-        }
-
-        [Fact]
-        public async Task Test_AuthorizeViewDoorAccessHistoryAsync_Returns_False_When_UserId_DoorId_Are_Invalid()
-        {
-            // arrange
-            var userAccessLevelMocks = UserAccessLevelMock.GetUserAccessLevelMockData();
-            var doorAccessLevelMocks = DoorAccessLevelMock.GetDoorAccessLevelMockData();
-            _officeAccessDbContexMock.Setup(x => x.UserAccessLevels).Returns(userAccessLevelMocks.Object);
-            _officeAccessDbContexMock.Setup(x => x.DoorAccessLevels).Returns(doorAccessLevelMocks.Object);
-
-            int userId = 2;
-            int doorId = 1;
-
-            // act
-            var result = await _sut.AuthorizeViewDoorAccessHistoryAsync(userId, doorId);
-
-            // assert
-            result.Should().BeFalse();
-        }
     }
 }

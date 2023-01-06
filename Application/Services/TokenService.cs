@@ -21,7 +21,7 @@ namespace Application.Services
             _jwtOptions = options.Value;
         }
 
-        public string GenerateJwtToken(long userId, string username)
+        public string GenerateJwtToken(long userId, string username, bool canViewHistory)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var tokenKey = Encoding.UTF8.GetBytes(_jwtOptions.SecretKey);
@@ -29,7 +29,8 @@ namespace Application.Services
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim("UserId", userId.ToString())
+                    new Claim("UserId", userId.ToString()),
+                    new Claim("CanViewHistory", canViewHistory.ToString())
                 }),
                 Issuer = _jwtOptions.Issuer,
                 Audience = _jwtOptions.Audience,
