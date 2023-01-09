@@ -8,9 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Microsoft.Extensions.Options;
 using Application.Options;
 using Microsoft.OpenApi.Models;
+using Microsoft.Extensions.Options;
 
 namespace OfficeAccess.API.Extensions;
 
@@ -72,7 +72,7 @@ public static class ServiceCollectionExtension
 
     private static void ConfigureDbOptions(IServiceCollection services, IConfiguration config)
     {
-        services.Configure<DbOptions>(opt => config.GetSection(DbOptions.Key).Bind(opt));
+        services.Configure<DbOptions>(config.GetSection(DbOptions.Key));
     }
 
     private static void ConfigureJwtOptions(IServiceCollection services, IConfiguration config)
