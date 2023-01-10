@@ -1,7 +1,7 @@
 ﻿using Application.Dtos.Responses;
 using Application.Interfaces;
-using Application.Interfaces.Repositories;
 using Application.Services;
+using Domain.RepositoryInterfaces;
 using FluentAssertions;
 using Infrastructure.Persistence.Tests.DbSetMocks;
 using Moq;

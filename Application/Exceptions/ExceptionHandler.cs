@@ -1,5 +1,6 @@
 ﻿using System.Net;
-using Application.Exceptions.Types;
+using Application.Dtos.Responses;
+using Domain.Exceptions;
 using Domain.Constants;
 using Microsoft.Extensions.Logging;
 

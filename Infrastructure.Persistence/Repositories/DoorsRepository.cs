@@ -1,6 +1,5 @@
-﻿using Application.Dtos.Responses;
-using Application.Interfaces.Repositories;
-using Domain.Entities;
+﻿using Domain.Entities;
+using Domain.RepositoryInterfaces;
 using Infrastructure.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 
