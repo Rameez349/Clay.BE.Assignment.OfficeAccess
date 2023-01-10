@@ -27,3 +27,7 @@ Certain users have the authority to view door access history.
 ##### Note: The intial db creation migration already has seed data. Please ensure to add connection string to database in user secrets or appsettings. Example connection string: "Server=NB-RAAH\\SQLEXPRESS;Database=OfficeAccessDb;Integrated Security=True;"
 
 ![image](https://user-images.githubusercontent.com/16301198/211291562-f305bb71-6d64-4f79-aac8-17baddf12e7e.png)
+
+#### Initial seed data has already been added with initial migration to test out application.
+![image](https://user-images.githubusercontent.com/16301198/211483573-072c04d4-498c-406a-b8fa-85b4b3a824b0.png)
+
