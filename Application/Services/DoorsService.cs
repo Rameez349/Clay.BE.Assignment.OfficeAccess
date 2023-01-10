@@ -1,8 +1,8 @@
 ﻿using Application.Dtos.Responses;
 using Application.Interfaces;
-using Application.Interfaces.Repositories;
 using Application.Mappings;
 using Domain.Entities;
+using Domain.RepositoryInterfaces;
 
 namespace Application.Services;
 
